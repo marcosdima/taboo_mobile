@@ -10,7 +10,7 @@ type AuthPayload = {
   password: string;
 };
 
-type LoginResponse = {
+export type LoginResponse = {
   token: string;
   user: {
     id: number;
@@ -27,6 +27,12 @@ export type GameResponse = {
   creator: number;
   started_at: string | null;
   ended_at: string | null;
+};
+
+export type PlayResponse = {
+  id: number;
+  user_id: number;
+  game_id: number;
 };
 
 type HttpResponse = {
@@ -77,5 +83,46 @@ export const getGames = async (token: string): Promise<GameResponse[]> => {
   });
 
   return parseResponse<GameResponse[]>(response);
+};
+
+export const createGame = async (token: string): Promise<GameResponse> => {
+  const response = await globalThis.fetch(`${API_URL}/games`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({}),
+  });
+
+  return parseResponse<GameResponse>(response);
+};
+
+export const addPlay = async (token: string, userId: number, gameId: number): Promise<PlayResponse> => {
+  const response = await globalThis.fetch(`${API_URL}/play`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ user_id: userId, game_id: gameId }),
+  });
+
+  return parseResponse<PlayResponse>(response);
+};
+
+export const getCurrentPlay = async (token: string, userId: number): Promise<PlayResponse | null> => {
+  const response = await globalThis.fetch(`${API_URL}/plays/user/${userId}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (response.status === 404) {
+    return null;
+  }
+
+  return parseResponse<PlayResponse>(response);
 };
 

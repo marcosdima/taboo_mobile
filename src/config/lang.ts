@@ -15,6 +15,7 @@ const lang = {
     pages: {
       login: {
         title: 'Log In',
+        checkingSession: 'Checking saved session...',
         aliasPlaceholder: 'Enter your alias',
         passwordPlaceholder: 'Enter your password',
         action: 'Log In',
@@ -40,10 +41,14 @@ const lang = {
       },
       play: {
         title: 'Play',
+        checkingGame: 'Checking active game...',
         alias: 'Alias',
         aliasPlaceholder: 'Enter your alias',
         createServer: 'Create Server',
         joinGame: 'Join Game',
+        missingToken: 'You must log in first',
+        created: 'Game created successfully',
+        error: 'Could not create game',
       },
       enterGame: {
         title: 'Enter Game',
@@ -54,6 +59,12 @@ const lang = {
         creator: 'Creator',
         missingToken: 'You must log in first',
         error: 'Could not load games',
+        joined: 'You joined the game',
+      },
+      game: {
+        title: 'Current Game',
+        currentId: 'Game ID',
+        error: 'Could not validate active game',
       },
     },
   },
@@ -70,6 +81,7 @@ const lang = {
     pages: {
       login: {
         title: 'Iniciar Sesión',
+        checkingSession: 'Verificando sesión guardada...',
         aliasPlaceholder: 'Ingresa tu alias',
         passwordPlaceholder: 'Ingresa tu contraseña',
         action: 'Iniciar Sesión',
@@ -95,10 +107,14 @@ const lang = {
       },
       play: {
         title: 'Jugar',
+        checkingGame: 'Verificando partida activa...',
         alias: 'Alias',
         aliasPlaceholder: 'Ingresa tu alias',
         createServer: 'Crear Servidor',
         joinGame: 'Unirse a Partida',
+        missingToken: 'Debes iniciar sesión primero',
+        created: 'Partida creada correctamente',
+        error: 'No se pudo crear la partida',
       },
       enterGame: {
         title: 'Entrar a Partida',
@@ -109,6 +125,12 @@ const lang = {
         creator: 'Creador',
         missingToken: 'Debes iniciar sesión primero',
         error: 'No se pudieron cargar las partidas',
+        joined: 'Te uniste a la partida',
+      },
+      game: {
+        title: 'Partida Actual',
+        currentId: 'ID de Partida',
+        error: 'No se pudo validar la partida activa',
       },
     },
   },
