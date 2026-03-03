@@ -1,5 +1,5 @@
 import { Title, View } from '@base';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, BackHandler } from 'react-native';
 import { useNavigator, useToast } from 'alambre';
 import { useLang, useLightDark } from '@config';
 import { BorderButton } from 'node_modules/alambre/dist/components/base/input/buttons';
@@ -13,35 +13,51 @@ export default () => {
       },
     },
   } = useLightDark();
-  const { setMessage } = useToast();
   const { navigate } = useNavigator();
   const { lang } = useLang();
 
-  const onPressOut = () => {
+  const onConfiguration = () => {
     navigate('configuration');
-    setMessage({
-      content: 'No lo hagas!',
-      type: 'error',
-      duration: 7000,
-    });
+  };
+
+  const onPlay = () => {
+    navigate('play');
+  };
+
+  const onExit = () => {
+    BackHandler.exitApp();
+  };
+
+  const textStyle = {
+    color,
+    borderColor: color,
+    textAlign: 'center' as const,
+    borderWidth: 2,
+    borderRadius: 15,
+    padding: 15,
+    ...subTitle,
   };
 
   return (
     <View style={styles.contenedor}>
       <Title text={lang.pages.home.title} />
       <BorderButton
-        label='Configuration'
+        label={lang.menu.play}
         style={{ width: '70%' }}
-        textStyle={{
-          color,
-          borderColor: color,
-          textAlign: 'center',
-          borderWidth: 2,
-          borderRadius: 15,
-          padding: 15,
-          ...subTitle,
-        }}
-        onPressOut={onPressOut}
+        textStyle={textStyle}
+        onPressOut={onPlay}
+      />
+      <BorderButton
+        label={lang.menu.configuration}
+        style={{ width: '70%' }}
+        textStyle={textStyle}
+        onPressOut={onConfiguration}
+      />
+      <BorderButton
+        label={lang.menu.exit}
+        style={{ width: '70%' }}
+        textStyle={textStyle}
+        onPressOut={onExit}
       />
     </View>
   );
